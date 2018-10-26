@@ -1,0 +1,18 @@
+<thead>
+    <tr>
+        <th>S.no</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+    <tbody>
+        <% if(enableAdd === true) { %>
+            <td></td>
+            <td><input type="text" class="form-control user-fname" /></td>
+            <td><input type="text" class="form-control user-lname" /></td>
+            <td><input type="text" class="form-control user-address" /></td>
+            <td><button class="btn btn-primary btn-sm add-user">Add</button></td>
+        <% } %>
+    </tbody>
+</thead>
