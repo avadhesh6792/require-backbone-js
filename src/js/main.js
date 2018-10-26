@@ -1,6 +1,5 @@
 require.config({
     paths: {
-        'myuser': 'user',
         "jquery": 'lib/jquery',
         "backbone": 'lib/backbone',
         "underscore": 'lib/underscore',
