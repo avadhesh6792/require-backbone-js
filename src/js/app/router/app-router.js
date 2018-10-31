@@ -1,4 +1,4 @@
-define(['backbone', 'require'], function(Backbone, require){
+define(['backbone', 'require', 'bootstrapJs'], function(Backbone, require){
 
     let AppRouter = Backbone.Router.extend({
         routes: {
@@ -11,6 +11,7 @@ define(['backbone', 'require'], function(Backbone, require){
             'signup': 'signup'
         },
         home: function(){
+            $(document).attr('title', 'Home');
             require(['app/view/home/home'], function(homeView){
                 let userModel = Backbone.Model.extend({});
                 let user1 = new userModel();
@@ -39,26 +40,31 @@ define(['backbone', 'require'], function(Backbone, require){
             })
         },
         features: function(){
+            $(document).attr('title', 'Features');
             require(['app/view/features/features'], function(featuresView){
                 new featuresView({ el: '#content'});
             })
         },
         enterprise: function(){
+            $(document).attr('title', 'Enterprise');
             require(['app/view/enterprise/enterprise'], function(enterpriseView){
                 new enterpriseView({ el: '#content'});
             })
         },
         support: function(){
+            $(document).attr('title', 'Support');
             require(['app/view/support/support'], function(supportView){
                 new supportView({ el: '#content'});
             })
         },
         pricing: function(){
+            $(document).attr('title', 'Pricing');
             require(['app/view/pricing/pricing'], function(pricingView){
                 new pricingView({ el: '#content'});
             })
         },
         signup: function(){
+            $(document).attr('title', 'Signup');
             require(['app/view/signup/signup'], function(signupView){
                 new signupView({ el: '#content'});
             })
