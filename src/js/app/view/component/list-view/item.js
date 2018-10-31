@@ -14,7 +14,10 @@ define(['app/model/user', 'text!app/view/component/list-view/item.html'], functi
         template: _.template(itemHtml),
         updateItem: function(){
             let fname = $('.item-fname-edit').val();
-            this.model.set('fname', fname);
+            let lname = $('.item-lname-edit').val();
+            let address = $('.item-address-edit').val();
+
+            this.model.set({fname, lname, address});
         },
         editItem: function(){
             $('.edit-item').hide();
@@ -23,7 +26,12 @@ define(['app/model/user', 'text!app/view/component/list-view/item.html'], functi
             this.$('.update-item').show();
             this.$('.cancel-item').show();
             let fname = this.$('.item-fname').text();
+            let lname = this.$('.item-lname').text();
+            let address = this.$('.item-address').text();
+
             this.$('.item-fname').html(`<input type="text" class="form-control item-fname-edit" value="${fname}" />`);
+            this.$('.item-lname').html(`<input type="text" class="form-control item-lname-edit" value="${lname}" />`);
+            this.$('.item-address').html(`<input type="text" class="form-control item-address-edit" value="${address}" />`);
         },
         deleteItem: function(){
             this.model.destroy();

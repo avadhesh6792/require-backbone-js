@@ -1,5 +1,5 @@
-define(['app/view/component/list-view/item', 'text!app/view/component/list-view/list.html', 'app/model/user'],
- function(itemView, listHtml, userModel){
+define(['app/view/component/list-view/item', 'text!app/view/component/list-view/list.html', 'app/model/user', 'app/view/component/alert/alert'],
+ function(itemView, listHtml, userModel, alertView){
     let listView = Backbone.View.extend({
         initialize: function(attrs){
             this.enableAdd = attrs.enableAdd !== undefined ? attrs.enableAdd : true;
@@ -22,12 +22,29 @@ define(['app/view/component/list-view/item', 'text!app/view/component/list-view/
             this.collection.add([user]);
         },
         add: function(e){
-            this.render();
+            let { fname, lname, address } = e.toJSON();
+            let message = '';
+            let type = '';
+            if(fname === ''){
+                message = 'First name is required';
+                type = 'danger';
+            } else if (lname === ''){
+                message = 'Last name is required';
+                type = 'danger';
+            } else if(address === ''){
+                message = 'Address name is required';
+                type = 'danger';
+            } else {
+                message = 'Data was added successfully';
+                type = 'success';
+                this.render();
+            }
+            new alertView({type, message}).render();
         },
         cancelItem: function(){
             this.render();
         },
-        change: function(){
+        change: function(e){
             this.render();
         },
         destroy: function(){
@@ -41,7 +58,7 @@ define(['app/view/component/list-view/item', 'text!app/view/component/list-view/
                 this.$('tbody').append('<td colspan="5">No Item Found</td>');
             } else {
                 _.each(this.collection.models, (model, index) => {
-                    this.$('tbody').append( new itemView({model: model, index}).render().$el);
+                    this.$('tbody').append( new itemView({model, index}).render().$el);
                 });
             }
             return this;
